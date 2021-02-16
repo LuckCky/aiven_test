@@ -1,5 +1,6 @@
 .idea
 .env*
+!.env.example
 .ca-cert
 .cert-key
 .cert-signed
