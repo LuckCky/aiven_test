@@ -1,0 +1,7 @@
+.idea
+.env*
+.ca-cert
+.cert-key
+.cert-signed
+*cache*
+*logs*
