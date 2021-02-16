@@ -12,11 +12,11 @@ Before building images you should fill several files with credentials in the dir
 
 Such as:
 
-* .ca-cert - 
-* .cert-key - 
-* .cert-signed - 
-* .env - 
-* .env.test - 
+* .ca-cert - CA used to sign certificate
+* .cert-key - Private Key file of certfile certificate
+* .cert-signed - Signed certificate
+* .env - list of environment variables for production
+* .env.test - list of environment variables for tests
 You can find .env.example as an example what info you should put to .env* files.
 
 After cloning this repo you can build two Docker images one for consumer and one for producer.
