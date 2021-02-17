@@ -13,9 +13,9 @@ Before building images you should fill several files with credentials in the dir
 
 Such as:
 
-* .ca-cert - CA used to sign certificate
-* .cert-key - Private Key file of certfile certificate
-* .cert-signed - Signed certificate
+* .ca-cert - CA used to sign Kafka certificate
+* .cert-key - Private Key file of certfile Kafka certificate
+* .cert-signed - Signed Kafka certificate
 * .env - list of environment variables for production
 * .env.test - list of environment variables for tests
 You can find .env.example as an example what info you should put to .env* files.
