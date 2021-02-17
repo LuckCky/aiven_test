@@ -8,6 +8,12 @@ logger = init_sys_logger(__name__)
 
 
 def create_tables(db_credentials: str, tables: Dict[str, str]):
+    """
+    Creates all tables in db
+    :param db_credentials: string for connection
+    :param tables: dict with tables names and sql queries
+    :return: None
+    """
     conn = psycopg2.connect(db_credentials)
     cur = conn.cursor()
     for table, sql_query in tables.items():
@@ -19,6 +25,13 @@ def create_tables(db_credentials: str, tables: Dict[str, str]):
 
 
 def create_table(cur, conn, query: str):
+    """
+    Executes sql statement for table creation
+    :param cur: cursor
+    :param conn: connection
+    :param query: sql query text
+    :return: None
+    """
     try:
         cur.execute(query)
         conn.commit()

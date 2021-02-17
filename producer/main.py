@@ -12,6 +12,10 @@ logger = init_sys_logger(__name__)
 
 
 def main():
+    """
+    Main producer pipeline
+    :return: None
+    """
     db_credentials = form_db_credentials()
     message_broker_credentials = form_message_broker_credentials()
     create_tables(db_credentials, tables)

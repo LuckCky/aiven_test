@@ -20,6 +20,10 @@ context = create_ssl_context(
 
 
 async def consume():
+    """
+    main consumer pipeline
+    :return: None
+    """
     db_credentials = form_db_credentials()
     create_tables(db_credentials, tables)
     message_broker_credentials = form_message_broker_credentials()

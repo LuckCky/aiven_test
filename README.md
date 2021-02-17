@@ -6,7 +6,8 @@ It consists of two parts - consumer and producer.
 They both are available in different Docker containers which you can run on one or more machines.
 
 Consumer consumes messages from Kafka and saves them to PostgreSQL.
-Producer gets urls list for checking from PostgreSQL, checks them and then sends info to Kafka topic.
+
+Producer gets urls list for checking from PostgreSQL, gets timeout in seconds between checks from database or default from config file if none is specified, checks them and then sends info to Kafka topic.
 
 Before building images you should fill several files with credentials in the directory where you've cloned the repo.
 

@@ -4,6 +4,12 @@ import aiopg
 
 
 async def save_data(db_credentials: str, data: Dict[str, str]) -> None:
+    """
+    Save data to db
+    :param db_credentials: db credentials for connection
+    :param data: data to save
+    :return: None
+    """
     pool = await aiopg.create_pool(db_credentials)
     async with pool.acquire() as conn:
         async with conn.cursor() as cur:

@@ -6,10 +6,9 @@ import os
 def init_sys_logger(name: str, level: int = logging.INFO):
     """
     Defines logger
-    Args:
-        name: string; name of logger
-        level: logging level to set
-    Returns: logger
+    :param name: name of logger
+    :param level: logging level to set
+    :return: logger
     """
     _logger = logging.getLogger(name=name)
     path_to_log_file = './logs/' + name + '.log'
