@@ -50,7 +50,8 @@ async def test_save_data():
         'error_code': 200,
         'latency': 0.004029075000289595,
         'regexp': False,
-        'url': 'http://localhost:56319/foobar'
+        'url': 'http://localhost:56319/foobar',
+        'checked_at': '1970-01-01_16:20'
     }
 
     await save_data(test_db_credentials, test_data)
@@ -59,11 +60,12 @@ async def test_save_data():
     url_id, url = cur.fetchone()
     assert url == test_data['url']
 
-    cur.execute('SELECT error_code, latency, regexp, url_id FROM check_data;')
-    error_code, latency, regexp, url_id_check = cur.fetchone()
+    cur.execute('SELECT error_code, latency, regexp, checked_at, url_id FROM check_data;')
+    error_code, latency, regexp, checked_at, url_id_check = cur.fetchone()
     assert error_code == test_data['error_code']
     assert latency == test_data['latency']
     assert regexp == test_data['regexp']
+    assert checked_at == test_data['checked_at']
     assert url_id_check == url_id
 
     delete_tables(cur)

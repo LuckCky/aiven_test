@@ -1,4 +1,5 @@
 import asyncio
+from datetime import datetime
 import json
 import re
 from typing import Dict
@@ -32,6 +33,7 @@ class Website:
         self.latency = -1
         self.error_code = -1
         self.trace_config = TraceConfig()
+        self.checked_at = datetime.utcnow().strftime('%Y-%m-%d_%H:%M')
 
     async def _on_request_start(self, session, trace_config_ctx, params):
         trace_config_ctx.start = asyncio.get_event_loop().time()
@@ -89,7 +91,13 @@ class Website:
         :param regexp_found: status if regexp was found
         :return: Kafka message
         """
-        return {'error_code': self.error_code, 'latency': self.latency, 'regexp': regexp_found, 'url': self.url}
+        return {
+            'error_code': self.error_code,
+            'latency': self.latency,
+            'regexp': regexp_found,
+            'url': self.url,
+            'checked_at': self.checked_at
+        }
 
     async def send_message(self, message: Dict[str, str]):
         """

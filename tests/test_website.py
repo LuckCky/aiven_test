@@ -5,6 +5,7 @@ import pytest
 from aiohttp.client_exceptions import InvalidURL
 from aiokafka import AIOKafkaConsumer
 from aiokafka.helpers import create_ssl_context
+from freezegun import freeze_time
 
 from config import kafka_topic
 from producer.website import Website
@@ -111,17 +112,19 @@ async def test_check_regexp_false(httpserver):
     assert not website.check_regexp(text)
 
 
+@freeze_time('1970-01-01 16:20')
 def test_form_message():
     url = 'localhost'
     website = Website(url, 'foo', 'bar')
     test_message = website.form_message(True)
 
-    assert len(test_message) == 4
-    assert list(test_message.keys()) == ['error_code', 'latency', 'regexp', 'url']
+    assert len(test_message) == 5
+    assert list(test_message.keys()) == ['error_code', 'latency', 'regexp', 'url', 'checked_at']
     assert test_message['error_code'] == -1
     assert test_message['latency'] == -1
     assert test_message['regexp']
     assert test_message['url'] == url
+    assert test_message['checked_at'] == '1970-01-01_16:20'
 
 
 def message_sent():

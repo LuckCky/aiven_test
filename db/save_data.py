@@ -1,3 +1,4 @@
+from datetime import datetime
 from typing import Dict
 
 import aiopg
@@ -15,11 +16,14 @@ async def save_data(db_credentials: str, data: Dict[str, str]) -> None:
         async with conn.cursor() as cur:
             await cur.execute('INSERT INTO urls (url) VALUES (%s) ON CONFLICT DO NOTHING RETURNING id', (data['url'],))
             data['url_id'] = await cur.fetchone()
+            data['checked_at'] = datetime.strptime(data['checked_at'], '%Y-%m-%d_%H:%M')
             await cur.execute('INSERT INTO check_data ('
                               'error_code, '
                               'latency, '
                               'regexp, '
-                              'url_id) VALUES (%s, %s, %s, %s)', (data['error_code'],
-                                                                  data['latency'],
-                                                                  data['regexp'],
-                                                                  data['url_id'], ))
+                              'checked_at, '
+                              'url_id) VALUES (%s, %s, %s, %s, %s)', (data['error_code'],
+                                                                      data['latency'],
+                                                                      data['regexp'],
+                                                                      data['checked_at'],
+                                                                      data['url_id'], ))

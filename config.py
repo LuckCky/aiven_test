@@ -18,6 +18,7 @@ tables = {
                   'error_code INT, '
                   'latency FLOAT, '
                   'regexp BOOL, '
+                  'checked_at TIMESTAMP, '
                   'url_id INT, '
                   'CONSTRAINT fk_urls FOREIGN KEY(url_id) REFERENCES urls(id)'
                   ');'

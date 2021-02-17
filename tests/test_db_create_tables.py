@@ -46,10 +46,13 @@ def delete_tables(cur):
 
 
 def test_create_tables_one_table():
-    # TODO: set_up and tear_down tast case
+    # TODO: set_up and tear_down test case
     set_envs()
     conn = get_conn()
     cur = conn.cursor()
+    delete_tables(cur)
+    conn.commit()
+
     for table in ['foo', 'bar']:
         cur.execute(test_tables[table])
     conn.commit()
@@ -66,10 +69,13 @@ def test_create_tables_one_table():
 
 
 def test_create_tables_two_tables():
-    # TODO: set_up and tear_down tast case
+    # TODO: set_up and tear_down test case
     set_envs()
     conn = get_conn()
     cur = conn.cursor()
+    delete_tables(cur)
+    conn.commit()
+
     for table in ['foo_bar']:
         cur.execute(test_tables[table])
     conn.commit()
@@ -87,10 +93,12 @@ def test_create_tables_two_tables():
 
 
 def test_create_table():
-    # TODO: set_up and tear_down tast case
+    # TODO: set_up and tear_down test case
     set_envs()
     conn = get_conn()
     cur = conn.cursor()
+    delete_tables(cur)
+    conn.commit()
 
     create_table(cur, conn, test_tables['foo'])
 
